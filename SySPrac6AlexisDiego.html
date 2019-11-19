@@ -1,0 +1,203 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Pr&aacute;ctica 6: Sistemas diferenciales</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-11-18"><meta name="DC.source" content="SySPrac6AlexisDiego.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Pr&aacute;ctica 6: Sistemas diferenciales</h1><!--introduction--><p>Integrantes</p><div><ul><li>Alvarez Garcia Elian Alexander</li><li>Diego Vertiz Alexis</li><li>Marquina Zendejas Victor</li><li>Mendivil Herrera Jesus Alejandro</li></ul></div><p>UPIITA IPN Se&ntilde;ales y Sistemas Grupo: 2TV1</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">1. Funcion de tranferencia</a></li><li><a href="#3">2. Respuesta al impulso</a></li><li><a href="#5">3. Respuesta a entrada cero</a></li><li><a href="#7">4. Respuesta a estado cero (simb&oacute;lico, gr&aacute;fica)</a></li><li><a href="#9">5. Respuesta total</a></li><li><a href="#11">6. Respuesta total al escal&oacute;n con condiciones iniciales 0</a></li><li><a href="#13">7. Graficas</a></li></ul></div><h2 id="1">1. Funcion de tranferencia</h2><p>Muestra la funci&oacute;n de transferencia del sistema</p><p>Codigo: <a href="https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/FunTransferencia.m">enlace</a></p><pre class="codeinput">syms <span class="string">t</span>;
+sympref(<span class="string">'HeavisideAtOrigin'</span>, 1);
+FunTransferencia([10 7 1], [1])
+</pre><pre class="codeoutput">      1
+-------------
+ 2
+s  + 7 s + 10
+
+ 
+ans =
+ 
+1/(s^2 + 7*s + 10)
+ 
+</pre><h2 id="3">2. Respuesta al impulso</h2><p>Muestra la respuesta al impulso (simb&oacute;lico, gr&aacute;fica)</p><p>Codigo: <a href="https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResImpulso.m">enlace</a></p><pre class="codeinput">ResImpulso([10 7 1],[1],10)
+</pre><pre class="codeoutput">exp(-2 t)   exp(-5 t)
+--------- - ---------
+    3           3
+
+ 
+ans(t) =
+ 
+exp(-2*t)/3 - exp(-5*t)/3
+ 
+</pre><img vspace="5" hspace="5" src="SySPrac6AlexisDiego_01.png" alt=""> <h2 id="5">3. Respuesta a entrada cero</h2><p>Muestra la respuesta a entrada cero (simb&oacute;lico, gr&aacute;fica)</p><p>Codigo: <a href="https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResEntradaCero.m">enlace</a></p><pre class="codeinput">ResEntradaCero([10 7 1], [1], [1 1],10)
+</pre><pre class="codeoutput">exp(-2 t) 2 - exp(-5 t)
+
+ 
+ans(t) =
+ 
+2*exp(-2*t) - exp(-5*t)
+ 
+</pre><img vspace="5" hspace="5" src="SySPrac6AlexisDiego_02.png" alt=""> <h2 id="7">4. Respuesta a estado cero (simb&oacute;lico, gr&aacute;fica)</h2><p>Muestra la respuesta a estado cero</p><p>Codigo: <a href="https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResEstadoCero.m">enlace</a></p><pre class="codeinput">ResEstadoCero([10 7 1], [1], exp(-t)*heaviside(t),10)
+</pre><pre class="codeoutput">exp(-t)   exp(-2 t)   exp(-5 t)
+------- - --------- + ---------
+   4          3           12
+
+ 
+ans(t) =
+ 
+exp(-t)/4 - exp(-2*t)/3 + exp(-5*t)/12
+ 
+</pre><img vspace="5" hspace="5" src="SySPrac6AlexisDiego_03.png" alt=""> <h2 id="9">5. Respuesta total</h2><p>Muestra la respuesta total (simb&oacute;lico, gr&aacute;fica)</p><p>Codigo: <a href="https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResTotal.m">enlace</a></p><pre class="codeinput">ResTotal([10 7 1],[1], [1 1], exp(-t)*heaviside(t),10)
+</pre><pre class="codeoutput">exp(-t)   exp(-2 t) 5   exp(-5 t) 11
+------- + ----------- - ------------
+   4           3             12
+
+ 
+ans(t) =
+ 
+exp(-t)/4 + (5*exp(-2*t))/3 - (11*exp(-5*t))/12
+ 
+</pre><img vspace="5" hspace="5" src="SySPrac6AlexisDiego_04.png" alt=""> <h2 id="11">6. Respuesta total al escal&oacute;n con condiciones iniciales 0</h2><p>La respuesta total al escal&oacute;n con condiciones iniciales 0 (simb&oacute;lico, gr&aacute;fica)</p><p>Codigo: <a href="https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResEsc.m">enlace</a></p><pre class="codeinput">ResEsc([10 7 1],[1], heaviside(t), 10)
+</pre><pre class="codeoutput">exp(-5 t)   exp(-2 t)    1
+--------- - --------- + --
+    15          6       10
+
+ 
+ans(t) =
+ 
+exp(-5*t)/15 - exp(-2*t)/6 + 1/10
+ 
+</pre><img vspace="5" hspace="5" src="SySPrac6AlexisDiego_05.png" alt=""> <h2 id="13">7. Graficas</h2><p>Usando subplot, depliega una figura con 5 gr&aacute;ficas</p><p>Codigo: <a href="https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/Respuestas.m">enlace</a></p><pre class="codeinput">Respuestas
+</pre><pre class="codeoutput">exp(-2 t)   exp(-5 t)
+--------- - ---------
+    3           3
+
+exp(-2 t) 2 - exp(-5 t)
+
+exp(-t)   exp(-2 t)   exp(-5 t)
+------- - --------- + ---------
+   4          3           12
+
+exp(-t)   exp(-2 t) 5   exp(-5 t) 11
+------- + ----------- - ------------
+   4           3             12
+
+exp(-5 t)   exp(-2 t)    1
+--------- - --------- + --
+    15          6       10
+
+</pre><img vspace="5" hspace="5" src="SySPrac6AlexisDiego_06.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Práctica 6: Sistemas diferenciales 
+% Integrantes
+%
+% * Alvarez Garcia Elian Alexander
+% * Diego Vertiz Alexis
+% * Marquina Zendejas Victor 
+% * Mendivil Herrera Jesus Alejandro
+%
+% UPIITA IPN   
+% Señales y Sistemas
+% Grupo: 2TV1 
+%
+%% 1. Funcion de tranferencia
+%
+% Muestra la función de transferencia del sistema
+%%
+% Codigo: <https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/FunTransferencia.m enlace>
+syms t;
+sympref('HeavisideAtOrigin', 1);
+FunTransferencia([10 7 1], [1])
+%% 2. Respuesta al impulso
+% Muestra la respuesta al impulso (simbólico, gráfica)
+%%
+% Codigo: <https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResImpulso.m enlace>
+ResImpulso([10 7 1],[1],10)
+%% 3. Respuesta a entrada cero
+% Muestra la respuesta a entrada cero (simbólico, gráfica)
+%%
+% Codigo: <https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResEntradaCero.m enlace>
+ResEntradaCero([10 7 1], [1], [1 1],10)
+%% 4. Respuesta a estado cero (simbólico, gráfica)
+% Muestra la respuesta a estado cero
+%%
+% Codigo: <https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResEstadoCero.m enlace>
+ResEstadoCero([10 7 1], [1], exp(-t)*heaviside(t),10)
+%% 5. Respuesta total
+% Muestra la respuesta total (simbólico, gráfica)
+%%
+% Codigo: <https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResTotal.m enlace>
+ResTotal([10 7 1],[1], [1 1], exp(-t)*heaviside(t),10)
+%% 6. Respuesta total al escalón con condiciones iniciales 0
+% La respuesta total al escalón con condiciones iniciales 0 (simbólico, gráfica)
+%%
+% Codigo: <https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/ResEsc.m enlace>
+ResEsc([10 7 1],[1], heaviside(t), 10)
+%% 7. Graficas 
+% Usando subplot, depliega una figura con 5 gráficas
+%%
+% Codigo: <https://github.com/AlexisDiego15/SySPrac6AlexisDiego/blob/master/Respuestas.m enlace> 
+Respuestas
+
+##### SOURCE END #####
+--></body></html>
